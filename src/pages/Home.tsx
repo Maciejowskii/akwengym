@@ -30,11 +30,11 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
           </div>
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl rotate-3 scale-105">
-              <img className="w-full h-full object-cover" alt="Sztangista wykonujący martwy ciąg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcdTJALQ2xSR-746tPM0mstCQrzkZrJ0xzrmnnrSWJcf-q0SeOPU7eBj69nLS6t4hSRSh1Q0WDPT4x1WhlZEeJolUuL2hgL9O0tckz-l2FnHOVj1ge7OKkZcO4f0a-n07Kr4FoMPu17zUnnIwwXTPchQKhk9CX4TPT4S0zVJcFmEBLmptol8bw1K-iaEszMmQ8Vr_BN6KcLJKdNeMzIemyXgo1zdu0AHXoyXx_0k3fQ9OmuuUBB5BNEUu22E0Hb6Gj8GMDc7dU3KE" />
+              <img className="w-full h-full object-cover" alt="Sztangista wykonujący martwy ciąg" src="/assets/client_photos/IMG_9930.jpg" />
             </div>
             <div className="absolute -bottom-12 -left-12 w-72 bg-surface-container-lowest p-6 rounded-[2rem] shadow-2xl -rotate-6 hidden md:block border border-outline-variant/20">
               <div className="w-full h-48 rounded-2xl overflow-hidden mb-4 shadow-inner">
-                <img className="w-full h-full object-cover" alt="Profesjonalny terapeuta masażu przy pracy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb9OPGBHrOXrfCSrIXHJyyNlz-biQkS5iZVgUpn6GnboF0eBPSAj2bgJy6VaNi-2rXk-yxEJzlgQfjwR6ETOfyV7p-o1TxOnwmmyxAMM1berhAXXqcGDBHqngyzgaiu2Ci4edhPN0edbjqZRhSickyT6LvhlAMh8mdUPZAssAlpxHbN_JxOa5Z1KkqVE3TXRbZAvlZzOVEhSJUeYRSxIZaZiNsB57GmTMT9FCD7_CvD3raSQZ3meDoFmmZx5wDzR7YfIsTWaoJMqw" />
+                <img className="w-full h-full object-cover" alt="Profesjonalny terapeuta masażu przy pracy" src="/assets/client_photos/IMG_2472.jpg" />
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
@@ -56,7 +56,7 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 pt-12">
                   <div className="h-64 rounded-2xl overflow-hidden shadow-lg">
-                    <img className="w-full h-full object-cover" alt="Obciążenia i hantle na siłowni" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwG6onLiGCDxZG8FwqEkanw7wPIqKU5RxW-3jBEqilwmrIhUqpwQ7ufYa4GrFD8p7663BpoqELlMzYfrZF8OLyBfH0wlllYNnMwGtvpvtLx8aNJ2zi1BRM-7rIGIu_EZhLK0h-LVAVrGZlQO2AMSn56b4CISORoAmC_pfg02luhnrV3RQooLAX63qCzFo0HS6pvOogn3H8TH9zn-X1LNqm8wKAuaaaiMM1LChSIeqhxl3CTEwYjDhqfW6tqpgkwP0b3rtBWiKniQI" />
+                    <img className="w-full h-full object-cover" alt="Obciążenia i hantle na siłowni" src="/assets/client_photos/IMG_9848.jpg" />
                   </div>
                   <div className="bg-primary text-on-primary p-8 rounded-2xl">
                     <span className="font-headline text-4xl font-bold">8+</span>
@@ -98,10 +98,10 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { name: 'Daniel', role: 'Założyciel | 8+ lat doświadczenia', desc: 'Fundament Akwen, pasjonat wszechstronnego rozwoju.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD82gRn_TEwhh_3GzEeE4CDB7lJ7_14BH7wp7sXQDFHXmfZuYBj2R9FVMaLi9A6atDkHDviXpJbUh1U6u5oRqOOBHpVis-Ch5vXN1lBi2nGdEqKCW-KFGyHAr9H-GOJZsKnGXJAPYxA-Dt02-hWT_QkyI7yXXRFuHHYCF7LIXXLD3Bc1yL9Poiytr4_8f6XEQl2hq0JLy_IkCReXo4CYwnbD2ywOcVZ3w-6G47fX2-uuLMMWV_AkJIzwLYYVZ8U5yJN3MvCfM-ej-g' },
-              { name: 'Dawid', role: 'Przygotowanie motoryczne', desc: 'Absolwent AWF, specjalista od dynamiki i szybkości.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdqWWrOqwDHVzOwLVlFAoZE3Hd4iLvJyvgY4Hs8wJRGOhJCsPXET07ta4eQTIiWiSqgspgXNvPKyk-XXS_wlgb1GKpYqsSyXAaHZVOo7a0Oo11PUR4ewsJwNTeXxD7IMFhU8KpNLX8LUTrktZx5P0aJvuGwFUinIoHt5NTDyej1huLfJo1r2GFmFJ4Ju6RHocjvjrHIcPlOvHIYg3LW2q7JcH7M0x1IW7v93az6Wuc6uKAoZGA_UHIkw9X1WVB8blQAsoqoY_jeug' },
-              { name: 'Edyta', role: 'Siła kobiet | Zawodniczka', desc: 'Udowadnia, że siła jest kobieca i piękna.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDP429nlxs1k9mFdNCROLkC1gwVeYGT952-4dBvQgkkHoTq-2UpiFnU__LrK_O-hYKIgG2TaKP5LrAM9wwiaWuB0WE19_lN8_REsua3s9vCyyBvVLW0PSQXug9u44L-1e7Ga0s-pIGdT151MCE4SpvyWFp6kHtREv6DLwim0xSyVZXq5IQnqU8MlMm26xChJr-WiFZwx4IuiqkQza7GLb35v8NG_JwZ9hVM0bCXaK550BJ4oZ5E0R_e9ohbPilOMjM28P1LidVIdr8' },
-              { name: 'Wojciech', role: 'Student fizjoterapii | Trójboista', desc: 'Łączy medyczne podejście z ciężkim treningiem.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCwjKhSNUJK_h1pkB1Taw-tc6vxnSzZRSJqr0Lw5ypyZ18D5G-BQB0f_alEd_XQ_wlRRg2cNFdpsGYOpU9F6vWgI8zRbpk2DteavFdQbxVsPUQ0vDlU0mSydtDgGl-yl5FACnVFItzDISvQhYFzxZZ_gCSzS4NGna7vkZGDn2Pu6PkZcYJRTHXuJt-cbAB6xkanehi23VSd-uyluYmgISOQ2VPUl1Z_tYwmqTikNEpY1tSx269q8LYOf2a9OJYTPLJCB6rrkOvqxIg' }
+              { name: 'Daniel', role: 'Założyciel | 8+ lat doświadczenia', desc: 'Fundament Akwen, pasjonat wszechstronnego rozwoju.', img: '/assets/client_photos/image00007.jpeg' },
+              { name: 'Dawid', role: 'Przygotowanie motoryczne', desc: 'Absolwent AWF, specjalista od dynamiki i szybkości.', img: '/assets/client_photos/image00006.jpeg' },
+              { name: 'Edyta', role: 'Siła kobiet | Zawodniczka', desc: 'Udowadnia, że siła jest kobieca i piękna.', img: '/assets/client_photos/trener_glowny.jpg' },
+              { name: 'Wojciech', role: 'Student fizjoterapii | Trójboista', desc: 'Łączy medyczne podejście z ciężkim treningiem.', img: '/assets/client_photos/image00001.jpeg' }
             ].map((coach, i) => (
               <div key={i} className="group relative overflow-hidden rounded-3xl aspect-[3/4] bg-surface-container-highest">
                 <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt={coach.name} src={coach.img} />
