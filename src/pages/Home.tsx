@@ -98,10 +98,10 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { name: 'Daniel', role: 'Założyciel | 8+ lat doświadczenia', desc: 'Fundament Akwen, pasjonat wszechstronnego rozwoju.', img: '/assets/client_photos/image00007.jpeg' },
-              { name: 'Dawid', role: 'Przygotowanie motoryczne', desc: 'Absolwent AWF, specjalista od dynamiki i szybkości.', img: '/assets/client_photos/image00006.jpeg' },
+              { name: 'Daniel', role: 'Założyciel | 8+ lat doświadczenia', desc: 'Fundament Akwen, pasjonat wszechstronnego rozwoju.', img: '/assets/client_photos/wyslac.jpg' },
+              { name: 'Dawid', role: 'Przygotowanie motoryczne', desc: 'Absolwent AWF, specjalista od dynamiki i szybkości.', img: '/assets/client_photos/image00007.jpeg' },
               { name: 'Edyta', role: 'Siła kobiet | Zawodniczka', desc: 'Udowadnia, że siła jest kobieca i piękna.', img: '/assets/client_photos/trener_glowny.jpg' },
-              { name: 'Wojciech', role: 'Student fizjoterapii | Trójboista', desc: 'Łączy medyczne podejście z ciężkim treningiem.', img: '/assets/client_photos/image00001.jpeg' }
+              { name: 'Wojciech', role: 'Student fizjoterapii | Trójboista', desc: 'Łączy medyczne podejście z ciężkim treningiem.', img: '/assets/client_photos/image00006.jpeg' }
             ].map((coach, i) => (
               <div key={i} className="group relative overflow-hidden rounded-3xl aspect-[3/4] bg-surface-container-highest">
                 <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt={coach.name} src={coach.img} />
