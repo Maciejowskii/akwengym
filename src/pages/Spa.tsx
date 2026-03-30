@@ -169,6 +169,34 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
             </div>
           </div>
         </div>
+
+        {/* Spacer */}
+        <div className="h-24"></div>
+
+        {/* Spa Gallery */}
+        <div className="space-y-12">
+          <div className="flex items-center gap-6">
+            <h2 className="font-headline text-3xl font-black text-primary uppercase tracking-tighter">Gabinet Masażu</h2>
+            <div className="h-px bg-outline-variant flex-grow"></div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[300px]">
+            {[
+              { img: 'IMG_2472.jpg', className: 'col-span-2 row-span-2' },
+              { img: 'IMG_2586.jpg', className: 'col-span-2 row-span-1' },
+              { img: 'IMG_2534.jpg', className: 'col-span-1 row-span-1' },
+              { img: 'IMG_2544.jpg', className: 'col-span-1 row-span-1' }
+            ].map((item, i) => (
+              <div key={i} className={`group relative rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl ${item.className}`}>
+                <img 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  alt="Gabinet AKWEN" 
+                  src={`/assets/client_photos/${item.img}`} 
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
