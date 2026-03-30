@@ -123,7 +123,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
         {/* Pediatric Rehab Section */}
         <div className="rounded-[3rem] bg-surface-container-lowest border border-outline-variant/50 overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12">
-            <div className="lg:col-span-7 p-10 md:p-16 space-y-10">
+            <div className="lg:col-span-12 p-10 md:p-16 space-y-10">
               <div className="space-y-4">
                 <span className="text-secondary font-headline font-bold tracking-widest uppercase text-xs">Współpraca Specjalistyczna</span>
                 <h2 className="font-headline font-black text-4xl md:text-5xl text-primary leading-tight">mgr Paulina Filipowicz</h2>
@@ -163,9 +163,6 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
               <button onClick={() => setPage('pricing')} className="bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold uppercase tracking-wide hover:shadow-xl transition-all">
                 Konsultacja dziecięca
               </button>
-            </div>
-            <div className="lg:col-span-5 relative min-h-[400px]">
-              <img className="absolute inset-0 w-full h-full object-cover" alt="Rehabilitacja neurorozwojowa dzieci" src="/assets/pediatric_rehab.png" />
             </div>
           </div>
         </div>
