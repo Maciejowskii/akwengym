@@ -30,11 +30,11 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
           </div>
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl rotate-3 scale-105">
-              <img className="w-full h-full object-cover" alt="Sztangista wykonujący martwy ciąg" src="/assets/client_photos/IMG_9930.jpg" />
+              <img className="w-full h-full object-cover" alt="Sztangista wykonujący martwy ciąg" src="/assets/client_photos/gym_photo/IMG_9930.jpg" />
             </div>
             <div className="absolute -bottom-12 -left-12 w-72 bg-surface-container-lowest p-6 rounded-[2rem] shadow-2xl -rotate-6 hidden md:block border border-outline-variant/20">
               <div className="w-full h-48 rounded-2xl overflow-hidden mb-4 shadow-inner">
-                <img className="w-full h-full object-cover" alt="Profesjonalny terapeuta masażu przy pracy" src="/assets/client_photos/IMG_2472.jpg" />
+                <img className="w-full h-full object-cover" alt="Profesjonalny terapeuta masażu przy pracy" src="/assets/spa_photo/IMG_2472.jpg" />
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
@@ -56,7 +56,7 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 pt-12">
                   <div className="h-64 rounded-2xl overflow-hidden shadow-lg">
-                    <img className="w-full h-full object-cover" alt="Obciążenia i hantle na siłowni" src="/assets/client_photos/IMG_9848.jpg" />
+                    <img className="w-full h-full object-cover" alt="Obciążenia i hantle na siłowni" src="/assets/client_photos/gym_photo/IMG_9848.jpg" />
                   </div>
                   <div className="bg-primary text-on-primary p-8 rounded-2xl">
                     <span className="font-headline text-4xl font-bold">8+</span>
@@ -169,10 +169,10 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: 'Kalistenika Dorośli', time: 'PN 19:00 / CZW 19:00', img: 'client_photos/group1.jpg' },
-                { title: 'Kettlebell', time: 'WT 19:00 / PT 19:00', img: 'client_photos/group2.jpg' },
-                { title: 'Zabiegany Rodzic', time: 'WT 8:30 / CZW 8:30', img: 'client_photos/group3.jpg' },
-                { title: 'Kalistenika Dzieci', time: 'PN 15:30 / CZW 15:30', img: 'client_photos/group4.jpg' }
+                { title: 'Kalistenika Dorośli', time: 'PN 19:00 / CZW 19:00', img: 'client_photos/gym_photo/group1.jpg' },
+                { title: 'Kettlebell', time: 'WT 19:00 / PT 19:00', img: 'client_photos/gym_photo/group2.jpg' },
+                { title: 'Zabiegany Rodzic', time: 'WT 8:30 / CZW 8:30', img: 'client_photos/gym_photo/group3.jpg' },
+                { title: 'Kalistenika Dzieci', time: 'PN 15:30 / CZW 15:30', img: 'client_photos/gym_photo/group4.jpg' }
               ].map((item, i) => (
                 <div key={i} className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl">
                   <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={item.title} src={`/assets/${item.img}`} />
@@ -202,14 +202,14 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
               {[
                 { img: 'IMG_9848.jpg', className: 'col-span-2 row-span-2' },
                 { img: 'IMG_9930.jpg', className: 'col-span-2 row-span-1' },
-                { img: 'IMG_2462.jpg', className: 'col-span-1 row-span-1' },
-                { img: 'wyslac.jpg', className: 'col-span-1 row-span-1' }
+                { img: 'deb516a1-a760-4bc8-bf1e-6d4206b0440f.jpg', className: 'col-span-1 row-span-1' },
+                { img: 'c49a2b89-41c9-4056-b625-a491155deca5.jpg', className: 'col-span-1 row-span-1' }
               ].map((item, i) => (
                 <div key={i} className={`group relative rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl ${item.className}`}>
                   <img 
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                     alt="Przestrzeń AKWEN" 
-                    src={`/assets/client_photos/${item.img}`} 
+                    src={`/assets/client_photos/gym_photo/${item.img}`} 
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>

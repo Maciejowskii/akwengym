@@ -4,7 +4,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
       {/* Hero Section */}
       <section className="relative min-h-[819px] flex items-center px-8 md:px-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover opacity-90 scale-105" alt="luksusowy gabinet masażu" src="/assets/client_photos/IMG_2627.jpg" />
+          <img className="w-full h-full object-cover opacity-90 scale-105" alt="luksusowy gabinet masażu" src="/assets/spa_photo/IMG_2627.jpg" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-3xl">
@@ -105,7 +105,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           {/* Kobido */}
           <div className="group relative overflow-hidden rounded-[2.5rem] bg-surface-container-high aspect-[16/9] md:aspect-auto">
-            <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Masaż Kobido" src="/assets/client_photos/IMG_2555.jpg" />
+            <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Masaż Kobido" src="/assets/spa_photo/IMG_2555.jpg" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <div className="absolute bottom-0 p-10 w-full text-white">
               <h3 className="font-headline font-bold text-3xl mb-4">Masaż Kobido</h3>
@@ -190,7 +190,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
                 <img 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                   alt="Gabinet AKWEN" 
-                  src={`/assets/client_photos/${item.img}`} 
+                  src={`/assets/spa_photo/${item.img}`} 
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
