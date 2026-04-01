@@ -199,16 +199,16 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[300px]">
               {[
-                { img: 'IMG_9848.jpg', className: 'col-span-2 row-span-2' },
-                { img: 'IMG_9930.jpg', className: 'col-span-2 row-span-1' },
-                { img: 'deb516a1-a760-4bc8-bf1e-6d4206b0440f.jpg', className: 'col-span-1 row-span-1' },
-                { img: 'c49a2b89-41c9-4056-b625-a491155deca5.jpg', className: 'col-span-1 row-span-1' }
+                { img: 'group1.jpg', className: 'col-span-2 row-span-2' },
+                { img: 'group2.jpg', className: 'col-span-2 row-span-1' },
+                { img: 'gym_photo/deb516a1-a760-4bc8-bf1e-6d4206b0440f.jpg', className: 'col-span-1 row-span-1' },
+                { img: 'gym_photo/c49a2b89-41c9-4056-b625-a491155deca5.jpg', className: 'col-span-1 row-span-1' }
               ].map((item, i) => (
                 <div key={i} className={`group relative rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl ${item.className}`}>
                   <img 
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                     alt="Przestrzeń AKWEN" 
-                    src={`/assets/client_photos/gym_photo/${item.img}`} 
+                    src={`/assets/client_photos/${item.img}`} 
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
