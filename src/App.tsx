@@ -5,15 +5,25 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Spa from './pages/Spa';
 import Pricing from './pages/Pricing';
+import AdminPanel from './pages/Admin/AdminPanel';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  
+  useState(() => {
+    // Prosta obsługa adresów URL dla admina (?page=admin lub #admin)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('page') === 'admin' || window.location.hash === '#admin') {
+      setCurrentPage('admin');
+    }
+  });
 
   const renderPage = () => {
     switch (currentPage) {
       case 'home': return <Home key="home" setPage={setCurrentPage} />;
       case 'spa': return <Spa key="spa" setPage={setCurrentPage} />;
       case 'pricing': return <Pricing key="pricing" setPage={setCurrentPage} />;
+      case 'admin': return <AdminPanel key="admin" />;
       default: return <Home key="home" setPage={setCurrentPage} />;
     }
   };

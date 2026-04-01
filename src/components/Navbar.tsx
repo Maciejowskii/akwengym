@@ -3,6 +3,7 @@ export default function Navbar({ currentPage, setPage }: { currentPage: string, 
     { id: 'home', label: 'Siłownia' },
     { id: 'spa', label: 'Spa' },
     { id: 'pricing', label: 'Cennik' },
+    { id: 'blog', label: 'Blog' },
   ];
 
   return (
