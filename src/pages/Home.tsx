@@ -169,10 +169,9 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: 'Kalistenika Dorośli', time: 'PN 19:00 / CZW 19:00', img: 'client_photos/gym_photo/group1.jpg' },
-                { title: 'Kettlebell', time: 'WT 19:00 / PT 19:00', img: 'client_photos/gym_photo/group2.jpg' },
-                { title: 'Zabiegany Rodzic', time: 'WT 8:30 / CZW 8:30', img: 'client_photos/gym_photo/group3.jpg' },
-                { title: 'Kalistenika Dzieci', time: 'PN 15:30 / CZW 15:30', img: 'client_photos/gym_photo/group4.jpg' }
+                { title: 'Kalistenika Dorośli', time: 'PN 19:00 / CZW 19:00', img: 'client_photos/kalinestykadorosli.jpg' },
+                { title: 'Kettlebell', time: 'WT 19:00 / PT 19:00', img: 'client_photos/ketleball.jpeg' },
+                { title: 'Kalistenika Dzieci', time: 'PN 15:30 / CZW 15:30', img: 'client_photos/kalinestykamlodziezdzieci.jpg' }
               ].map((item, i) => (
                 <div key={i} className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl">
                   <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={item.title} src={`/assets/${item.img}`} />
