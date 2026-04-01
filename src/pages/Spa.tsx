@@ -69,7 +69,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
           <div className="w-24 h-1.5 bg-tertiary-fixed-dim mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {/* Masaż Relaksacyjny */}
           <div className="group p-8 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/30 hover:bg-surface-container-high transition-all">
             <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
@@ -90,6 +90,16 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
               Wspomaga leczenie urazów i dolegliwości mięśniowo-szkieletowych. Poprawia krążenie, przywraca sprawność ruchową i łagodzi ból.
             </p>
           </div>
+          {/* Fizjoterapia */}
+          <div className="group p-8 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/30 hover:bg-surface-container-high transition-all">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined text-4xl">medical_services</span>
+            </div>
+            <h3 className="font-headline font-bold text-2xl text-primary mb-4">Fizjoterapia</h3>
+            <p className="font-body text-on-surface-variant leading-relaxed">
+              Kompleksowa rehabilitacja dla dzieci i dorosłych. Pomagamy w wadach postawy, stanach pooperacyjnych i bólach przewlekłych.
+            </p>
+          </div>
           {/* Masaż Sportowy */}
           <div className="group p-8 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/30 hover:bg-surface-container-high transition-all">
             <div className="w-16 h-16 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
@@ -97,7 +107,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
             </div>
             <h3 className="font-headline font-bold text-2xl text-primary mb-4">Masaż Sportowy</h3>
             <p className="font-body text-on-surface-variant leading-relaxed">
-              Przygotowuje mięśnie do wysiłku i przyspiesza regenerację po treningu. Pomaga zmniejszyć napięcie mięśniowe, poprawia elastyczność.
+              Przygotowuje mięśnie do wysiłku i przyspiesza regenerację po treningu. Pomaga zmniejszyć napięcie mięśniowe.
             </p>
           </div>
         </div>
