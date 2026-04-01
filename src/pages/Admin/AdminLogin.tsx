@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2 } from 'lucide-react';
 
 interface AdminLoginProps {
   onLogin: (token: string) => void;
@@ -10,6 +10,17 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Theme Constants
+  const colors = {
+    primary: '#002046',
+    secondary: '#206393',
+    surface: '#fdf9f6',
+    surfaceContainer: '#f1edea',
+    onSurface: '#1c1b1a',
+    onSurfaceVariant: '#44474e',
+    outline: '#c4c6cf',
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,97 +47,148 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
+      background: colors.surface,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "'Manrope', sans-serif",
+      padding: '24px',
     }}>
       <div style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: '20px',
-        padding: '48px 40px',
+        background: '#ffffff',
+        border: `1px solid ${colors.outline}`,
+        borderRadius: '24px',
+        padding: '56px 48px',
         width: '100%',
-        maxWidth: '420px',
-        backdropFilter: 'blur(12px)',
-        boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
+        maxWidth: '440px',
+        boxShadow: '0 20px 50px rgba(0,32,70,0.08)',
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div style={{
-            width: '56px', height: '56px',
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-            borderRadius: '16px',
+            width: '64px', height: '64px',
+            background: 'rgba(0,32,70,0.04)',
+            borderRadius: '20px',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#fff',
-            marginBottom: '16px',
+            color: colors.primary,
+            marginBottom: '20px',
           }}>
-            <ShieldCheck size={28} />
+            <ShieldCheck size={32} strokeWidth={1.5} />
           </div>
-          <h1 style={{ color: '#fff', fontSize: '24px', fontWeight: 700, margin: '0 0 6px' }}>
-            Panel Admina
+          <h1 style={{ 
+            color: colors.primary, 
+            fontSize: '28px', 
+            fontWeight: 800, 
+            margin: '0 0 8px',
+            letterSpacing: '-0.02em'
+          }}>
+            Panel Administracyjny
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px', margin: 0 }}>
-            Zaloguj się aby zarządzać blogiem
+          <p style={{ color: colors.onSurfaceVariant, fontSize: '15px', margin: 0, opacity: 0.8 }}>
+            Wprowadź dane, aby zarządzać treścią strony
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', fontSize: '13px', fontWeight: 500, marginBottom: '8px' }}>
-              Email
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ 
+              display: 'block', 
+              color: colors.primary, 
+              fontSize: '13px', 
+              fontWeight: 700, 
+              marginBottom: '8px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              Adres Email
             </label>
-            <input
-              id="admin-email"
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="admin@akwengym.pl"
-              required
-              style={{
-                width: '100%', padding: '12px 16px', boxSizing: 'border-box',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: '10px', color: '#fff', fontSize: '15px',
-                outline: 'none', transition: 'border 0.2s',
-              }}
-              onFocus={e => (e.target.style.borderColor = '#6366f1')}
-              onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
-            />
+            <div style={{ position: 'relative' }}>
+              <Mail size={18} style={{ 
+                position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)',
+                color: colors.outline
+              }} />
+              <input
+                id="admin-email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="admin@akwengym.pl"
+                required
+                style={{
+                  width: '100%', padding: '14px 16px 14px 48px', boxSizing: 'border-box',
+                  background: colors.surfaceContainer,
+                  border: '1px solid transparent',
+                  borderRadius: '12px', color: colors.onSurface, fontSize: '15px',
+                  outline: 'none', transition: 'all 0.2s',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = colors.primary;
+                  e.target.style.background = '#fff';
+                  e.target.style.boxShadow = `0 0 0 4px rgba(0,32,70,0.05)`;
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'transparent';
+                  e.target.style.background = colors.surfaceContainer;
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', fontSize: '13px', fontWeight: 500, marginBottom: '8px' }}>
-              Hasło
+          <div style={{ marginBottom: '32px' }}>
+            <label style={{ 
+              display: 'block', 
+              color: colors.primary, 
+              fontSize: '13px', 
+              fontWeight: 700, 
+              marginBottom: '8px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              Hasło dostępu
             </label>
-            <input
-              id="admin-password"
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              style={{
-                width: '100%', padding: '12px 16px', boxSizing: 'border-box',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: '10px', color: '#fff', fontSize: '15px',
-                outline: 'none', transition: 'border 0.2s',
-              }}
-              onFocus={e => (e.target.style.borderColor = '#6366f1')}
-              onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
-            />
+            <div style={{ position: 'relative' }}>
+              <Lock size={18} style={{ 
+                position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)',
+                color: colors.outline
+              }} />
+              <input
+                id="admin-password"
+                type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                style={{
+                  width: '100%', padding: '14px 16px 14px 48px', boxSizing: 'border-box',
+                  background: colors.surfaceContainer,
+                  border: '1px solid transparent',
+                  borderRadius: '12px', color: colors.onSurface, fontSize: '15px',
+                  outline: 'none', transition: 'all 0.2s',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = colors.primary;
+                  e.target.style.background = '#fff';
+                  e.target.style.boxShadow = `0 0 0 4px rgba(0,32,70,0.05)`;
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'transparent';
+                  e.target.style.background = colors.surfaceContainer;
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
           </div>
 
           {error && (
             <div style={{
-              background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)',
-              borderRadius: '8px', padding: '10px 14px', color: '#fca5a5',
-              fontSize: '13px', marginBottom: '16px',
+              background: '#fef2f2', border: '1px solid #fee2e2',
+              borderRadius: '12px', padding: '12px 16px', color: '#b91c1c',
+              fontSize: '14px', marginBottom: '24px', fontWeight: 500,
+              display: 'flex', alignItems: 'center', gap: '10px'
             }}>
-              {error}
+              <span>⚠️</span> {error}
             </div>
           )}
 
@@ -135,16 +197,36 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
             type="submit"
             disabled={loading}
             style={{
-              width: '100%', padding: '13px',
-              background: loading ? 'rgba(99,102,241,0.5)' : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-              border: 'none', borderRadius: '10px', color: '#fff',
-              fontSize: '15px', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
-              transition: 'all 0.2s', letterSpacing: '0.3px',
+              width: '100%', padding: '16px',
+              background: loading ? colors.outline : colors.primary,
+              border: 'none', borderRadius: '12px', color: '#fff',
+              fontSize: '16px', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              letterSpacing: '0.02em',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'
             }}
+            onMouseOver={e => !loading && (e.currentTarget.style.transform = 'translateY(-2px)')}
+            onMouseOut={e => !loading && (e.currentTarget.style.transform = 'translateY(0)')}
           >
-            {loading ? 'Logowanie...' : 'Zaloguj się'}
+            {loading ? <Loader2 size={20} className="animate-spin" /> : 'Zaloguj się do systemu'}
           </button>
         </form>
+
+        <div style={{ marginTop: '40px', textAlign: 'center' }}>
+          <button 
+            type="button"
+            onClick={() => window.location.href = '/'}
+            style={{ 
+              background: 'none', border: 'none', color: colors.onSurfaceVariant,
+              fontSize: '14px', fontWeight: 600, cursor: 'pointer', opacity: 0.6,
+              transition: 'opacity 0.2s'
+            }}
+            onMouseOver={e => (e.currentTarget.style.opacity = '1')}
+            onMouseOut={e => (e.currentTarget.style.opacity = '0.6')}
+          >
+            Powrót do strony głównej
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Edit2, Eye, Save, FileText, CheckCircle, Clock, Info } from 'lucide-react';
+import { ArrowLeft, Edit2, Eye, Save, FileText, CheckCircle, Clock, Info, Loader2 } from 'lucide-react';
 
 import { Post } from '../../types/blog';
 
@@ -31,13 +31,13 @@ function renderContent(text: string): string {
   // Konwertuj [tekst](url) na linki
   const withMarkdownLinks = escaped.replace(
     /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#818cf8;text-decoration:underline">$1</a>'
+    '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#206393;text-decoration:underline;font-weight:600">$1</a>'
   );
 
   // Konwertuj bare URLs na klikalne linki
   const withBareLinks = withMarkdownLinks.replace(
     /(?<!\")(?<!\()https?:\/\/[^\s<>"]+/g,
-    url => `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#818cf8;text-decoration:underline">${url}</a>`
+    url => `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#206393;text-decoration:underline;font-weight:600">${url}</a>`
   );
 
   // Konwertuj pogrubienie **tekst**
@@ -45,7 +45,7 @@ function renderContent(text: string): string {
 
   // Konwertuj nowe linie na paragrafy
   const paragraphs = withBold.split(/\n\n+/).map(p =>
-    `<p style="margin:0 0 1em">${p.replace(/\n/g, '<br>')}</p>`
+    `<p style="margin:0 0 1.2em">${p.replace(/\n/g, '<br>')}</p>`
   ).join('');
 
   return paragraphs;
@@ -63,6 +63,19 @@ export default function AdminEditor({ token, post, onSaved, onBack }: AdminEdito
   const [error, setError] = useState('');
   const [showPreview, setShowPreview] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Theme Constants
+  const colors = {
+    primary: '#002046',
+    secondary: '#206393',
+    surface: '#fdf9f6',
+    surfaceContainer: '#f1edea',
+    surfaceContainerHigh: '#ebe7e4',
+    onSurface: '#1c1b1a',
+    onSurfaceVariant: '#44474e',
+    outline: '#c4c6cf',
+    outlineVariant: '#e5e7eb',
+  };
 
   // Auto-resize textarea
   useEffect(() => {
@@ -122,74 +135,74 @@ export default function AdminEditor({ token, post, onSaved, onBack }: AdminEdito
 
   const inputStyle: React.CSSProperties = {
     width: '100%', boxSizing: 'border-box',
-    background: 'rgba(255,255,255,0.05)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    borderRadius: '10px', color: '#fff', fontSize: '15px',
-    outline: 'none', transition: 'border-color 0.2s',
-    fontFamily: "'Inter', sans-serif",
+    background: '#fff',
+    border: `1px solid ${colors.outlineVariant}`,
+    borderRadius: '12px', color: colors.onSurface, fontSize: '15px',
+    outline: 'none', transition: 'all 0.2s',
+    fontFamily: "'Manrope', sans-serif",
   };
 
   const labelStyle: React.CSSProperties = {
-    display: 'block', color: 'rgba(255,255,255,0.6)',
-    fontSize: '13px', fontWeight: 500, marginBottom: '8px',
+    display: 'block', color: colors.primary,
+    fontSize: '13px', fontWeight: 700, marginBottom: '8px',
+    textTransform: 'uppercase', letterSpacing: '0.03em',
   };
 
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%)',
-      fontFamily: "'Inter', sans-serif",
-      color: '#fff',
+      background: colors.surface,
+      fontFamily: "'Manrope', sans-serif",
+      color: colors.onSurface,
     }}>
       {/* Top bar */}
       <div style={{
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: `1px solid ${colors.outlineVariant}`,
         padding: '0 32px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        height: '64px',
-        background: 'rgba(255,255,255,0.02)',
+        height: '72px',
+        background: '#fff',
+        position: 'sticky', top: 0, zIndex: 10,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <button
             id="back-btn"
             onClick={onBack}
             style={{
-              background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '8px', color: 'rgba(255,255,255,0.7)', padding: '7px 14px',
-              fontSize: '13px', cursor: 'pointer',
+              background: 'transparent', border: `1px solid ${colors.outlineVariant}`,
+              borderRadius: '10px', color: colors.onSurfaceVariant, padding: '8px 16px',
+              fontSize: '13px', cursor: 'pointer', fontWeight: 600,
               display: 'flex', alignItems: 'center', gap: '8px',
             }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = colors.outline)}
+            onMouseOut={e => (e.currentTarget.style.borderColor = colors.outlineVariant)}
           >
-            <ArrowLeft size={14} />
+            <ArrowLeft size={16} />
             Powrót
           </button>
-          <span style={{ fontWeight: 700, fontSize: '18px' }}>
-            {post?.id ? 'Edytuj post' : 'Nowy post'}
+          <div style={{ width: '1px', height: '24px', background: colors.outlineVariant }}></div>
+          <span style={{ fontWeight: 800, fontSize: '18px', color: colors.primary, letterSpacing: '-0.02em' }}>
+            {post?.id ? 'Edycja wpisu' : 'Nowy wpis na blogu'}
           </span>
         </div>
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           <button
             id="preview-toggle-btn"
             onClick={() => setShowPreview(p => !p)}
             style={{
-              padding: '8px 16px',
-              background: showPreview ? 'rgba(99,102,241,0.2)' : 'rgba(255,255,255,0.06)',
-              border: `1px solid ${showPreview ? 'rgba(99,102,241,0.5)' : 'rgba(255,255,255,0.1)'}`,
-              borderRadius: '8px', color: showPreview ? '#818cf8' : 'rgba(255,255,255,0.7)',
-              fontSize: '13px', cursor: 'pointer', fontWeight: 500,
-              display: 'flex', alignItems: 'center', gap: '8px',
+              padding: '10px 18px',
+              background: showPreview ? 'rgba(32,99,147,0.08)' : 'transparent',
+              border: `1px solid ${showPreview ? colors.secondary : colors.outlineVariant}`,
+              borderRadius: '10px', color: showPreview ? colors.secondary : colors.onSurfaceVariant,
+              fontSize: '14px', cursor: 'pointer', fontWeight: 700,
+              display: 'flex', alignItems: 'center', gap: '10px',
+              transition: 'all 0.2s',
             }}
           >
             {showPreview ? (
-              <>
-                <Edit2 size={14} />
-                Edytor
-              </>
+              <><Edit2 size={16} /> Edytor</>
             ) : (
-              <>
-                <Eye size={14} />
-                Podgląd
-              </>
+              <><Eye size={16} /> Podgląd</>
             )}
           </button>
           <button
@@ -197,130 +210,142 @@ export default function AdminEditor({ token, post, onSaved, onBack }: AdminEdito
             onClick={handleSave}
             disabled={saving}
             style={{
-              padding: '8px 20px',
-              background: saving ? 'rgba(99,102,241,0.4)' : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-              border: 'none', borderRadius: '8px', color: '#fff',
-              fontSize: '14px', fontWeight: 600, cursor: saving ? 'not-allowed' : 'pointer',
-              display: 'flex', alignItems: 'center', gap: '8px',
+              padding: '10px 24px',
+              background: saving ? colors.outline : colors.primary,
+              border: 'none', borderRadius: '10px', color: '#fff',
+              fontSize: '14px', fontWeight: 700, cursor: saving ? 'not-allowed' : 'pointer',
+              display: 'flex', alignItems: 'center', gap: '10px',
+              boxShadow: '0 4px 12px rgba(0,32,70,0.15)',
             }}
           >
             {saving ? (
-              'Zapisywanie...'
+              <Loader2 size={18} className="animate-spin" />
             ) : (
-              <>
-                <Save size={16} />
-                Zapisz
-              </>
+              <><Save size={18} /> Opublikuj / Zapisz</>
             )}
           </button>
         </div>
       </div>
 
       <div style={{
-        maxWidth: '1100px', margin: '0 auto', padding: '32px',
+        maxWidth: '1200px', margin: '0 auto', padding: '40px 32px',
         display: 'grid',
-        gridTemplateColumns: showPreview ? '1fr 1fr' : '1fr 320px',
-        gap: '24px',
+        gridTemplateColumns: showPreview ? '1fr 1fr' : '1fr 340px',
+        gap: '32px',
         alignItems: 'start',
       }}>
         {/* Left: Editor or Preview */}
-        <div>
+        <div style={{ minWidth: 0 }}>
           {showPreview ? (
             <div style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '16px', padding: '32px',
-              minHeight: '500px',
+              background: '#fff',
+              border: `1px solid ${colors.outlineVariant}`,
+              borderRadius: '24px', padding: '48px',
+              minHeight: '600px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
             }}>
-              <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '8px', color: '#fff' }}>
-                {title || <span style={{ color: 'rgba(255,255,255,0.2)' }}>Tytuł posta...</span>}
+              <h1 style={{ 
+                fontSize: '36px', 
+                fontWeight: 900, 
+                marginBottom: '16px', 
+                color: colors.primary, 
+                fontFamily: "'Manrope', sans-serif",
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1
+              }}>
+                {title || <span style={{ opacity: 0.2 }}>Twój tytuł tutaj...</span>}
               </h1>
               {excerpt && (
-                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '16px', fontStyle: 'italic', marginBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '16px' }}>
+                <p style={{ 
+                  color: colors.onSurfaceVariant, 
+                  fontSize: '18px', 
+                  fontStyle: 'italic', 
+                  marginBottom: '32px', 
+                  borderLeft: `4px solid ${colors.secondary}`,
+                  paddingLeft: '20px',
+                  opacity: 0.8,
+                  lineHeight: 1.6
+                }}>
                   {excerpt}
                 </p>
               )}
               <div
-                style={{ color: 'rgba(255,255,255,0.85)', lineHeight: '1.8', fontSize: '15px' }}
+                style={{ 
+                  color: colors.onSurface, 
+                  lineHeight: '1.8', 
+                  fontSize: '17px',
+                  fontFamily: "'Noto Serif', serif" 
+                }}
                 dangerouslySetInnerHTML={{ __html: renderContent(content) }}
               />
             </div>
           ) : (
             <div style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '16px', padding: '24px',
-              display: 'flex', flexDirection: 'column', gap: '20px',
+              background: '#fff',
+              border: `1px solid ${colors.outlineVariant}`,
+              borderRadius: '24px', padding: '32px',
+              display: 'flex', flexDirection: 'column', gap: '24px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
             }}>
               {/* Tytuł */}
               <div>
-                <label style={labelStyle}>Tytuł *</label>
+                <label style={labelStyle}>Tytuł Wpisu *</label>
                 <input
                   id="post-title"
                   type="text"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
-                  placeholder="Wpisz tytuł posta..."
-                  style={{ ...inputStyle, padding: '12px 16px', fontSize: '18px', fontWeight: 600 }}
-                  onFocus={e => (e.target.style.borderColor = '#6366f1')}
-                  onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                  placeholder="Wpisz przyciągający uwagę tytuł..."
+                  style={{ ...inputStyle, padding: '16px 20px', fontSize: '20px', fontWeight: 800 }}
+                  onFocus={e => (e.target.style.borderColor = colors.primary)}
+                  onBlur={e => (e.target.style.borderColor = colors.outlineVariant)}
                 />
                 {title && (
-                  <div style={{ fontSize: '12px', color: '#6366f1', marginTop: '6px' }}>
-                    Slug: /{slugify(title)}
+                  <div style={{ fontSize: '12px', color: colors.secondary, marginTop: '8px', fontWeight: 600 }}>
+                    Przyjazny adres URL: /{slugify(title)}
                   </div>
                 )}
               </div>
 
               {/* Zajawka */}
               <div>
-                <label style={labelStyle}>Zajawka (krótki opis – wyświetlany na liście bloga)</label>
-                <input
+                <label style={labelStyle}>Krótka zajawka (Lead)</label>
+                <textarea
                   id="post-excerpt"
-                  type="text"
                   value={excerpt}
                   onChange={e => setExcerpt(e.target.value)}
-                  placeholder="Krótki opis posta..."
-                  style={{ ...inputStyle, padding: '10px 16px' }}
-                  onFocus={e => (e.target.style.borderColor = '#6366f1')}
-                  onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                  placeholder="Krótki opis, który pojawi się na liście wszystkich wpisów..."
+                  rows={2}
+                  style={{ ...inputStyle, padding: '14px 20px', resize: 'none' }}
+                  onFocus={e => (e.target.style.borderColor = colors.primary)}
+                  onBlur={e => (e.target.style.borderColor = colors.outlineVariant)}
                 />
               </div>
 
               {/* Treść */}
               <div>
-                <label style={labelStyle}>
-                  Treść *
-                  <span style={{ fontWeight: 400, color: 'rgba(255,255,255,0.35)', marginLeft: '8px' }}>
-                    Wklej tekst. Linki: [tekst](https://...) lub same URL. **Pogrubienie**
-                  </span>
-                </label>
+                <label style={labelStyle}>Treść artykułu *</label>
                 <textarea
                   id="post-content"
                   ref={textareaRef}
                   value={content}
                   onChange={e => setContent(e.target.value)}
-                  placeholder="Wklej lub napisz treść posta tutaj...
-
-Możesz używać:
-- Zwykłego tekstu
-- Linków: [kliknij tutaj](https://example.com) lub same https://...
-- **Pogrubionego tekstu**
-
-Puste linie tworzą nowe akapity."
+                  placeholder="Zacznij pisać swoją historię tutaj..."
                   style={{
                     ...inputStyle,
-                    padding: '14px 16px',
-                    minHeight: '320px',
+                    padding: '20px',
+                    minHeight: '400px',
                     resize: 'none',
                     overflow: 'hidden',
-                    lineHeight: '1.7',
+                    lineHeight: '1.8',
+                    fontSize: '16px',
                   }}
-                  onFocus={e => (e.target.style.borderColor = '#6366f1')}
-                  onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                  onFocus={e => (e.target.style.borderColor = colors.primary)}
+                  onBlur={e => (e.target.style.borderColor = colors.outlineVariant)}
                 />
-                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', marginTop: '4px' }}>
-                  {content.length} znaków · {content.split(/\s+/).filter(Boolean).length} słów
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: colors.onSurfaceVariant, marginTop: '8px', opacity: 0.6 }}>
+                  <span>Statystyki: {content.split(/\s+/).filter(Boolean).length} słów · {content.length} znaków</span>
+                  <span>Auto-zapis aktywny</span>
                 </div>
               </div>
             </div>
@@ -328,45 +353,52 @@ Puste linie tworzą nowe akapity."
         </div>
 
         {/* Right: Settings panel */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Status */}
           <div style={{
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '16px', padding: '24px',
+            background: '#fff',
+            border: `1px solid ${colors.outlineVariant}`,
+            borderRadius: '24px', padding: '28px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
           }}>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, color: 'rgba(255,255,255,0.7)', marginBottom: '16px', margin: '0 0 16px' }}>
-              Ustawienia publikacji
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: colors.primary, marginBottom: '20px', margin: '0 0 20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Publikacja
             </h3>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label style={labelStyle}>Status</label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ marginBottom: '24px' }}>
+              <label style={labelStyle}>Status wpisu</label>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {(['draft', 'published', 'scheduled'] as const).map(s => {
-                  const labels = {
-                    draft: { label: 'Szkic', icon: <FileText size={14} /> },
-                    published: { label: 'Opublikuj teraz', icon: <CheckCircle size={14} /> },
-                    scheduled: { label: 'Zaplanuj', icon: <Clock size={14} /> }
+                  const items = {
+                    draft: { label: 'Szkic roboczy', icon: <FileText size={16} /> },
+                    published: { label: 'Opublikuj teraz', icon: <CheckCircle size={16} /> },
+                    scheduled: { label: 'Zaplanuj wysyłkę', icon: <Clock size={16} /> }
                   };
+                  const isSelected = status === s;
                   return (
                     <label key={s} style={{
-                      display: 'flex', alignItems: 'center', gap: '10px',
-                      padding: '10px 14px',
-                      background: status === s ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.03)',
-                      border: `1px solid ${status === s ? 'rgba(99,102,241,0.4)' : 'rgba(255,255,255,0.06)'}`,
-                      borderRadius: '8px', cursor: 'pointer', fontSize: '14px',
+                      display: 'flex', alignItems: 'center', gap: '12px',
+                      padding: '12px 16px',
+                      background: isSelected ? 'rgba(0,32,70,0.04)' : 'transparent',
+                      border: `1px solid ${isSelected ? colors.primary : colors.outlineVariant}`,
+                      borderRadius: '12px', cursor: 'pointer', fontSize: '14px',
+                      fontWeight: isSelected ? 700 : 500,
                       transition: 'all 0.2s',
                     }}>
                       <input
                         type="radio"
                         name="status"
                         value={s}
-                        checked={status === s}
+                        checked={isSelected}
                         onChange={() => setStatus(s)}
-                        style={{ accentColor: '#6366f1' }}
+                        style={{ accentColor: colors.primary }}
                       />
-                      {labels[s].icon}
-                      {labels[s].label}
+                      <span style={{ color: isSelected ? colors.primary : colors.onSurfaceVariant }}>
+                        {items[s].icon}
+                      </span>
+                      <span style={{ color: isSelected ? colors.primary : colors.onSurface }}>
+                        {items[s].label}
+                      </span>
                     </label>
                   );
                 })}
@@ -374,8 +406,8 @@ Puste linie tworzą nowe akapity."
             </div>
 
             {status === 'scheduled' && (
-              <div>
-                <label style={labelStyle}>Data i godzina publikacji</label>
+              <div style={{ animation: 'fadeIn 0.3s' }}>
+                <label style={labelStyle}>Data i godzina</label>
                 <input
                   id="post-published-at"
                   type="datetime-local"
@@ -384,11 +416,10 @@ Puste linie tworzą nowe akapity."
                   min={new Date().toISOString().slice(0, 16)}
                   style={{
                     ...inputStyle,
-                    padding: '10px 14px',
-                    colorScheme: 'dark',
+                    padding: '12px 14px',
                   }}
-                  onFocus={e => (e.target.style.borderColor = '#6366f1')}
-                  onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                  onFocus={e => (e.target.style.borderColor = colors.primary)}
+                  onBlur={e => (e.target.style.borderColor = colors.outlineVariant)}
                 />
               </div>
             )}
@@ -397,29 +428,30 @@ Puste linie tworzą nowe akapity."
           {/* Błąd */}
           {error && (
             <div style={{
-              background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)',
-              borderRadius: '10px', padding: '12px 16px', color: '#fca5a5', fontSize: '13px',
+              background: '#fef2f2', border: '1px solid #fee2e2',
+              borderRadius: '16px', padding: '16px 20px', color: '#b91c1c', fontSize: '13px',
+              fontWeight: 600, display: 'flex', alignItems: 'flex-start', gap: '10px'
             }}>
-              {error}
+              <span>⚠️</span>
+              <span>{error}</span>
             </div>
           )}
 
           {/* Wskazówki */}
           <div style={{
-            background: 'rgba(99,102,241,0.06)',
-            border: '1px solid rgba(99,102,241,0.15)',
-            borderRadius: '16px', padding: '20px',
-            fontSize: '13px', color: 'rgba(255,255,255,0.5)',
-            lineHeight: '1.7',
+            background: colors.surfaceContainer,
+            border: `1px solid ${colors.outlineVariant}`,
+            borderRadius: '24px', padding: '24px',
           }}>
-            <div style={{ fontWeight: 600, color: '#818cf8', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ fontWeight: 800, color: colors.secondary, marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px', textTransform: 'uppercase', fontSize: '12px', letterSpacing: '0.05em' }}>
               <Info size={16} />
-              Formatowanie tekstu
+              Wskazówki edytorskie
             </div>
-            <div><code style={{ color: '#c4b5fd' }}>[tekst](https://...)</code> → klikalne linki</div>
-            <div style={{ marginTop: '6px' }}><code style={{ color: '#c4b5fd' }}>https://...</code> → auto-link</div>
-            <div style={{ marginTop: '6px' }}><code style={{ color: '#c4b5fd' }}>**tekst**</code> → <strong>pogrubienie</strong></div>
-            <div style={{ marginTop: '6px' }}>Pusta linia → nowy akapit</div>
+            <div style={{ fontSize: '13px', color: colors.onSurfaceVariant, lineHeight: '1.6' }}>
+              <div style={{ marginBottom: '8px' }}>• Use <code style={{ background: '#fff', padding: '2px 4px', borderRadius: '4px', border: `1px solid ${colors.outlineVariant}` }}>**bold**</code> for emphasis.</div>
+              <div style={{ marginBottom: '8px' }}>• Links: <code style={{ background: '#fff', padding: '2px 4px', borderRadius: '4px', border: `1px solid ${colors.outlineVariant}` }}>[title](url)</code></div>
+              <div>• Leave an empty line between paragraphs for better readability.</div>
+            </div>
           </div>
         </div>
       </div>
