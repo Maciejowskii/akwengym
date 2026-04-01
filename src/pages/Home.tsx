@@ -70,7 +70,7 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
                     <p className="text-sm opacity-70">Lokalna społeczność, światowe standardy.</p>
                   </div>
                   <div className="h-80 rounded-2xl overflow-hidden shadow-lg">
-                    <img className="w-full h-full object-cover" alt="Nowoczesne, przestronne wnętrze siłowni Akwen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo6Rl_CeXoEEaAtWzgEisfyB8FtZ5U3Hd1eHVw7YJ0p50wqI73Jm8vCpwRTSnXwiYkJGy8WZKf370go3pXCRABUm8LJnyBkniAHWVZ-1iHBdCiOmBBsSrZcXxlNNatHxvuMdc--iSbZtplBFNEd8q4AasWrkrhSUD5LflkrCw-pidkY7zULPScHKU7iG6APnvjdZZcqXl3QGsAsJxtB9D2HRo7WlDrLXvkdQcXw4b_y4yRo4NGJT-sswws1YgiRpFn-dMGG63OgfY" />
+                    <img className="w-full h-full object-cover" alt="Nowoczesne, przestronne wnętrze siłowni Akwen" src="/assets/client_photos/gym_photo/group2.jpg" />
                   </div>
                 </div>
               </div>
