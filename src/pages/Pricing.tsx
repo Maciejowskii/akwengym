@@ -241,6 +241,20 @@ export default function Pricing({ setPage }: { setPage: (page: string) => void, 
                   </div>
                 </div>
               </div>
+
+              {/* Fizjoterapia - mgr Kacper Kwietniak */}
+              <div className="bg-surface-container p-6 rounded-3xl border border-outline-variant/30 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="material-symbols-outlined text-secondary">medical_services</span>
+                  <h4 className="font-headline font-bold text-primary text-lg">Fizjoterapia - mgr Kacper Kwietniak</h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="font-body text-on-surface-variant">60 min</span>
+                    <span className="font-headline font-black text-xl text-primary">180 zł</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
