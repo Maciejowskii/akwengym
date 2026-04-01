@@ -167,13 +167,13 @@ export default function Home({ setPage }: { setPage: (page: string) => void, key
               <div className="h-px bg-outline-variant flex-grow"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
               {[
                 { title: 'Kalistenika Dorośli', time: 'PN 19:00 / CZW 19:00', img: 'client_photos/kalinestykadorosli.jpg' },
                 { title: 'Kettlebell', time: 'WT 19:00 / PT 19:00', img: 'client_photos/ketleball.jpeg' },
                 { title: 'Kalistenika Dzieci', time: 'PN 15:30 / CZW 15:30', img: 'client_photos/kalinestykamlodziezdzieci.jpg' }
               ].map((item, i) => (
-                <div key={i} className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl">
+                <div key={i} className="group relative aspect-[3/4] w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-xl">
                   <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={item.title} src={`/assets/${item.img}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8">
                     <h4 className="font-headline font-bold text-xl text-white mb-2">{item.title}</h4>

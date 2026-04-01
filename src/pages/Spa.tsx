@@ -105,7 +105,7 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           {/* Kobido */}
           <div className="group relative overflow-hidden rounded-[2.5rem] bg-surface-container-high aspect-[16/9] md:aspect-auto">
-            <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Masaż Kobido" src="/assets/spa_photo/IMG_2555.jpg" />
+            <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Masaż Kobido" src="/assets/spa_photo/IMG_2544.jpg" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <div className="absolute bottom-0 p-10 w-full text-white">
               <h3 className="font-headline font-bold text-3xl mb-4">Masaż Kobido</h3>
