@@ -1,0 +1,9 @@
+node_modules
+dist
+blog.db
+blog.db-shm
+blog.db-wal
+.env
+.git
+.gitignore
+README.md

@@ -5,10 +5,13 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Spa from './pages/Spa';
 import Pricing from './pages/Pricing';
+import BlogList from './pages/Blog/BlogList';
+import BlogPost from './pages/Blog/BlogPost';
 import AdminPanel from './pages/Admin/AdminPanel';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [selectedPostSlug, setSelectedPostSlug] = useState<string | null>(null);
   
   useState(() => {
     // Prosta obsługa adresów URL dla admina (?page=admin lub #admin)
@@ -18,11 +21,30 @@ export default function App() {
     }
   });
 
+  const handlePostClick = (slug: string) => {
+    setSelectedPostSlug(slug);
+    setCurrentPage('blog-post');
+    window.scrollTo(0, 0);
+  };
+
+  const handleBackToBlog = () => {
+    setSelectedPostSlug(null);
+    setCurrentPage('blog');
+    window.scrollTo(0, 0);
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'home': return <Home key="home" setPage={setCurrentPage} />;
       case 'spa': return <Spa key="spa" setPage={setCurrentPage} />;
       case 'pricing': return <Pricing key="pricing" setPage={setCurrentPage} />;
+      case 'blog': return <BlogList key="blog" setPage={setCurrentPage} onPostClick={handlePostClick} />;
+      case 'blog-post': 
+        return selectedPostSlug ? (
+          <BlogPost key={`post-${selectedPostSlug}`} slug={selectedPostSlug} onBack={handleBackToBlog} />
+        ) : (
+          <BlogList key="blog-fallback" setPage={setCurrentPage} onPostClick={handlePostClick} />
+        );
       case 'admin': return <AdminPanel key="admin" />;
       default: return <Home key="home" setPage={setCurrentPage} />;
     }
@@ -33,7 +55,7 @@ export default function App() {
       <Navbar currentPage={currentPage} setPage={setCurrentPage} />
       <AnimatePresence mode="wait">
         <motion.main
-          key={currentPage}
+          key={currentPage === 'blog-post' ? `blog-post-${selectedPostSlug}` : currentPage}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

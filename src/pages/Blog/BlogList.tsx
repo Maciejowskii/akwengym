@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { Post } from '../../types/blog';
 
 interface BlogListProps {
@@ -7,10 +6,20 @@ interface BlogListProps {
   onPostClick: (slug: string) => void;
 }
 
-export default function BlogList({ setPage, onPostClick }: BlogListProps) {
+export default function BlogList({ onPostClick }: BlogListProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  // Theme Colors
+  const colors = {
+    primary: '#002046',
+    secondary: '#206393',
+    surface: '#fdf9f6',
+    onSurface: '#1c1b1a',
+    onSurfaceVariant: '#44474e',
+    outlineVariant: '#e5e7eb',
+  };
 
   useEffect(() => {
     fetch('/api/posts')
@@ -26,85 +35,145 @@ export default function BlogList({ setPage, onPostClick }: BlogListProps) {
     });
 
   return (
-    <section style={{ minHeight: '80vh', padding: '60px 24px', maxWidth: '860px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '48px' }}>
+    <section style={{ 
+      minHeight: '80vh', 
+      padding: '80px 24px', 
+      maxWidth: '900px', 
+      margin: '0 auto',
+      fontFamily: "'Manrope', sans-serif" 
+    }}>
+      <div style={{ marginBottom: '60px', textAlign: 'center' }}>
         <h1 style={{
-          fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800,
-          background: 'linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-          marginBottom: '12px',
-        }}>Blog</h1>
-        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '16px' }}>
-          Porady i aktualności ze świata fitnessu i wellness
+          fontSize: 'clamp(36px, 6vw, 56px)', 
+          fontWeight: 900,
+          color: colors.primary,
+          marginBottom: '16px',
+          letterSpacing: '-0.03em',
+          lineHeight: 1.1
+        }}>
+          Blog Akwen
+        </h1>
+        <p style={{ 
+          color: colors.onSurfaceVariant, 
+          fontSize: '18px',
+          maxWidth: '600px',
+          margin: '0 auto',
+          lineHeight: 1.6,
+          opacity: 0.8
+        }}>
+          Poznaj tajniki treningu, regeneracji i zdrowego trybu życia. Ekspercka wiedza z pierwszej ręki.
         </p>
       </div>
 
       {loading && (
-        <div style={{ textAlign: 'center', padding: '64px', color: 'rgba(255,255,255,0.3)' }}>
-          Ładowanie...
+        <div style={{ textAlign: 'center', padding: '100px', color: colors.onSurfaceVariant }}>
+          <div className="animate-pulse" style={{ fontWeight: 600 }}>Ładowanie artykułów...</div>
         </div>
       )}
 
       {error && (
         <div style={{
-          background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)',
-          borderRadius: '12px', padding: '20px', color: '#fca5a5', textAlign: 'center',
+          background: '#fef2f2', border: `1px solid #fee2e2`,
+          borderRadius: '24px', padding: '32px', color: '#b91c1c', 
+          textAlign: 'center', fontWeight: 600
         }}>
           {error}
         </div>
       )}
 
       {!loading && !error && posts.length === 0 && (
-        <div style={{ textAlign: 'center', padding: '64px', color: 'rgba(255,255,255,0.3)' }}>
-          Brak postów. Zajrzyj wkrótce! 🏋️
+        <div style={{ 
+          textAlign: 'center', padding: '100px', 
+          background: colors.outlineVariant, 
+          borderRadius: '32px',
+          color: colors.onSurfaceVariant,
+          opacity: 0.6
+        }}>
+          <p style={{ fontSize: '18px', fontWeight: 600 }}>Jeszcze nic nie napisaliśmy, ale wrócimy wkrótce! 🏋️</p>
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px' }}>
         {posts.map((post, i) => (
           <article
             key={post.id}
-            id={`blog-post-${post.slug}`}
             onClick={() => onPostClick(post.slug)}
             style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '16px', padding: '28px 32px',
-              cursor: 'pointer', transition: 'all 0.25s',
-              animation: `fadeUp 0.4s ease ${i * 0.05}s both`,
+              background: '#ffffff',
+              border: `1px solid ${colors.outlineVariant}`,
+              borderRadius: '24px', 
+              padding: '40px',
+              cursor: 'pointer', 
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              animation: `fadeUp 0.6s ease ${i * 0.1}s both`,
+              boxShadow: '0 4px 20px rgba(0,32,70,0.02)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px'
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.borderColor = 'rgba(99,102,241,0.4)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(99,102,241,0.1)';
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.borderColor = colors.secondary;
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,32,70,0.06)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = '';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-              e.currentTarget.style.boxShadow = '';
+              e.currentTarget.style.borderColor = colors.outlineVariant;
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,32,70,0.02)';
             }}
           >
-            <div style={{ fontSize: '13px', color: '#6366f1', fontWeight: 600, marginBottom: '10px' }}>
+            <div style={{ 
+              fontSize: '13px', 
+              color: colors.secondary, 
+              fontWeight: 800, 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.05em' 
+            }}>
               {formatDate(post.published_at || post.created_at)}
             </div>
-            <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '10px', color: '#fff' }}>
+            <h2 style={{ 
+              fontSize: '28px', 
+              fontWeight: 850, 
+              color: colors.primary,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.2,
+              margin: '4px 0'
+            }}>
               {post.title}
             </h2>
             {post.excerpt && (
-              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '15px', lineHeight: '1.6', marginBottom: '16px' }}>
+              <p style={{ 
+                color: colors.onSurfaceVariant, 
+                fontSize: '16px', 
+                lineHeight: '1.7', 
+                opacity: 0.9,
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
+              }}>
                 {post.excerpt}
               </p>
             )}
-            <span style={{ color: '#818cf8', fontSize: '14px', fontWeight: 500 }}>
-              Czytaj dalej →
-            </span>
+            <div style={{ 
+              color: colors.primary, 
+              fontSize: '15px', 
+              fontWeight: 700,
+              marginTop: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px' 
+            }}>
+              Czytaj artykuł 
+              <span style={{ transition: 'transform 0.2s' }}>→</span>
+            </div>
           </article>
         ))}
       </div>
 
       <style>{`
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
