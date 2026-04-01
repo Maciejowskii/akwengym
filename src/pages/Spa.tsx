@@ -130,49 +130,100 @@ export default function Spa({ setPage }: { setPage: (page: string) => void, key?
           </div>
         </div>
 
-        {/* Pediatric Rehab Section */}
-        <div className="rounded-[3rem] bg-surface-container-lowest border border-outline-variant/50 overflow-hidden shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            <div className="lg:col-span-12 p-10 md:p-16 space-y-10">
-              <div className="space-y-4">
-                <span className="text-secondary font-headline font-bold tracking-widest uppercase text-xs">Współpraca Specjalistyczna</span>
-                <h2 className="font-headline font-black text-4xl md:text-5xl text-primary leading-tight">mgr Paulina Filipowicz</h2>
-                <p className="font-body text-xl text-on-surface-variant italic">Rehabilitacja neurorozwojowa dzieci i niemowląt – Metoda NDT Bobath</p>
-              </div>
+        <div className="space-y-12">
+          {/* Paulina Filipowicz Section */}
+          <div className="rounded-[3rem] bg-surface-container-lowest border border-outline-variant/50 overflow-hidden shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <div className="lg:col-span-12 p-10 md:p-16 space-y-10">
+                <div className="space-y-4">
+                  <span className="text-secondary font-headline font-bold tracking-widest uppercase text-xs">Współpraca Specjalistyczna</span>
+                  <h2 className="font-headline font-black text-4xl md:text-5xl text-primary leading-tight">mgr Paulina Filipowicz</h2>
+                  <p className="font-body text-xl text-on-surface-variant italic">Rehabilitacja neurorozwojowa dzieci i niemowląt – Metoda NDT Bobath</p>
+                </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="space-y-4">
-                  <h4 className="font-headline font-bold text-primary flex items-center gap-2">
-                    <span className="material-symbols-outlined text-secondary">medical_services</span> Oferuje terapię metodą:
-                  </h4>
-                  <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
-                    <li>NDT Bobath</li>
-                    <li>CME Medek</li>
-                    <li>ZOGA MOVEMENT</li>
-                    <li>Integracja strukturalna czaszki</li>
-                    <li>Fizjoterapia oddechowa</li>
-                    <li>Elektrostymulacja (EMS)</li>
-                    <li>Kinesiotaping</li>
-                    <li>Ocena rozwoju wg metody Prechtl'a</li>
-                  </ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-4">
+                    <h4 className="font-headline font-bold text-primary flex items-center gap-2">
+                      <span className="material-symbols-outlined text-secondary">medical_services</span> Oferuje terapię metodą:
+                    </h4>
+                    <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
+                      <li>NDT Bobath</li>
+                      <li>CME Medek</li>
+                      <li>ZOGA MOVEMENT</li>
+                      <li>Integracja strukturalna czaszki</li>
+                      <li>Fizjoterapia oddechowa</li>
+                      <li>Elektrostymulacja (EMS)</li>
+                      <li>Kinesiotaping</li>
+                      <li>Ocena rozwoju wg metody Prechtl'a</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-headline font-bold text-primary flex items-center gap-2">
+                      <span className="material-symbols-outlined text-secondary">psychology</span> Specjalizuje się w terapii:
+                    </h4>
+                    <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
+                      <li>Zaburzeń wieku rozwojowego (asymetria, napięcie)</li>
+                      <li>Dzieci urodzonych przedwcześnie</li>
+                      <li>Problemów neurologicznych</li>
+                      <li>Wad genetycznych i wrodzonych</li>
+                      <li>Wad nabytych</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-headline font-bold text-primary flex items-center gap-2">
-                    <span className="material-symbols-outlined text-secondary">psychology</span> Specjalizuje się w terapii:
-                  </h4>
-                  <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
-                    <li>Zaburzeń wieku rozwojowego (asymetria, napięcie)</li>
-                    <li>Dzieci urodzonych przedwcześnie</li>
-                    <li>Problemów neurologicznych</li>
-                    <li>Wad genetycznych i wrodzonych</li>
-                    <li>Wad nabytych</li>
-                  </ul>
-                </div>
+                
+                <button onClick={() => setPage('pricing')} className="bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold uppercase tracking-wide hover:shadow-xl transition-all">
+                  Konsultacja dziecięca
+                </button>
               </div>
-              
-              <button onClick={() => setPage('pricing')} className="bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold uppercase tracking-wide hover:shadow-xl transition-all">
-                Konsultacja dziecięca
-              </button>
+            </div>
+          </div>
+
+          {/* Kacper Kwietniak Section */}
+          <div className="rounded-[3rem] bg-surface-container-lowest border border-outline-variant/50 overflow-hidden shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <div className="lg:col-span-12 p-10 md:p-16 space-y-10">
+                <div className="space-y-4">
+                  <span className="text-secondary font-headline font-bold tracking-widest uppercase text-xs">Współpraca Specjalistyczna</span>
+                  <h2 className="font-headline font-black text-4xl md:text-5xl text-primary leading-tight">mgr Kacper Kwietniak</h2>
+                  <p className="font-body text-xl text-on-surface-variant italic">Fizjoterapia ortopedyczna i sportowa osób dorosłych</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-4">
+                    <h4 className="font-headline font-bold text-primary flex items-center gap-2">
+                      <span className="material-symbols-outlined text-secondary">add_circle</span> Oferuje terapię metodą:
+                    </h4>
+                    <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
+                      <li>Terapia manualna</li>
+                      <li>Trening medyczny</li>
+                      <li>Terapia powięziowa</li>
+                      <li>Masaż leczniczy i sportowy</li>
+                      <li>Kinesiotaping</li>
+                      <li>Mobilizacje i manipulacje stawowe</li>
+                      <li>Trening funkcjonalny</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-headline font-bold text-primary flex items-center gap-2">
+                      <span className="material-symbols-outlined text-secondary">hand_bones</span> Specjalizuje się w terapii:
+                    </h4>
+                    <ul className="space-y-2 font-body text-sm text-on-surface-variant list-disc pl-5">
+                      <li>Bólów kręgosłupa (odcinek szyjny, piersiowy, lędźwiowy)</li>
+                      <li>Urazów sportowych</li>
+                      <li>Przeciążeń i kontuzji treningowych</li>
+                      <li>Rehabilitacji pooperacyjnej</li>
+                      <li>Problemów stawowych</li>
+                      <li>Wad postawy u dorosłych</li>
+                      <li>Ograniczeń ruchomości i sztywności ciała</li>
+                      <li>Profilaktyki urazów i poprawy sprawności</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <button onClick={() => setPage('pricing')} className="bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold uppercase tracking-wide hover:shadow-xl transition-all">
+                  Konsultacja dorosłych
+                </button>
+              </div>
             </div>
           </div>
         </div>
